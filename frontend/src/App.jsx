@@ -10,6 +10,7 @@ import {
 import Home from './Pages/home/Home';
 import Login from './Pages/login/Login';
 import SignUp from './Pages/signup/SignUp';
+import Sidebar from './components/sidebar/Sidebar';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
