@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import GenderCheckbox from "./GenderCheckBox";
+import useSignup from "../../hooks/useSignup";
+import { InfinitySpin } from 'react-loader-spinner';
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const [fullName, setfullName] = useState("");
-    const [username, setusername] = useState("");
-    const [password, setPassword] = useState("");
-    const [confermPassword, setconfermPassword] = useState("");
+    const [inputs, setInputs] = useState({
+        fullName: "",
+        username: "",
+		password: "",
+		confirmPassword: "",
+		gender: "",
+    })
+
+    const {loading, signup} = useSignup();
+
+    const handleCheckboxChange = (gender) => {
+        setInputs({ ...inputs, gender });
+        
+    }
+
+    const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		await signup(inputs)
+	};
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-[500px] mt-10 lg:py-0">
@@ -16,19 +34,18 @@ const SignUp = () => {
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight md:text-2xl text-white">
                         Register To ChatApp
                     </h1>
-                    <form className="space-y-4 md:space-y-6">
+                    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label
-                                for="fullName"
+                                htmlFor="fullName"
                                 className="block mb-2 text-sm font-medium text-white"
                             >
                                 Full Name
                             </label>
                             <input
                                 type="text"
-                                onChange={(e) => {
-                                    setfullName(e.target.value);
-                                }}
+                                value={inputs.fullName}
+							    onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
                                 name="fullName"
                                 id="fullName"
                                 className=" border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-50  placeholder-gray-600 text-black focus:ring-blue-500 focus:border-blue-500"
@@ -38,16 +55,15 @@ const SignUp = () => {
                         </div>
                         <div>
                             <label
-                                for="username"
+                                htmlFor="username"
                                 className="block mb-2 text-sm font-medium text-white"
                             >
                                 User Name
                             </label>
                             <input
                                 type="text"
-                                onChange={(e) => {
-                                    setusername(e.target.value);
-                                }}
+                                value={inputs.username}
+                                onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
                                 name="username"
                                 id="username"
                                 className=" border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-50  placeholder-gray-600 text-black focus:ring-blue-500 focus:border-blue-500"
@@ -57,16 +73,15 @@ const SignUp = () => {
                         </div>
                         <div>
                             <label
-                                for="password"
+                                htmlFor="password"
                                 className="block mb-2 text-sm font-medium text-white"
                             >
                                 Password
                             </label>
                             <input
                                 type="password"
-                                onChange={(e) => {
-                                    setPassword(e.target.value);
-                                }}
+                                value={inputs.password}
+                                onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
                                 name="password"
                                 id="password"
                                 placeholder="••••••••"
@@ -76,18 +91,17 @@ const SignUp = () => {
                         </div>
                         <div>
                             <label
-                                for="confirmPassword"
+                                htmlFor="confirmPassword"
                                 className="block mb-2 text-sm font-medium text-white"
                             >
                                 Confirm Password
                             </label>
                             <input
                                 type="password"
-                                onChange={(e) => {
-                                    setconfermPassword(e.target.value);
-                                }}
+                                value={inputs.confirmPassword}
+							    onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
                                 name="confirmPassword"
-                                id="password"
+                                id="confirmpassword"
                                 placeholder="••••••••"
                                 className=" border border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-50  placeholder-gray-600 text-black focus:ring-blue-500 focus:border-blue-500"
                                 required=""
@@ -95,14 +109,15 @@ const SignUp = () => {
                         </div>
 
                         {/* GENDER CHECKBOX GOES HERE */}
-                        <GenderCheckbox/>
+                        <GenderCheckbox onCheckboxChange = {handleCheckboxChange} selectGender={inputs.gender}/>
 
                         <button
                             type="submit"
                             className="mx-32 text-center bg-slate-200 w-28 py-2"
                             style={{ borderRadius: "10px" }}
+                            disabled = {loading}
                         >
-                            Sign up
+                            {loading ? <InfinitySpin visible={true} width="100" color="black" ariaLabel="infinity-spin-loading"/> : "Signup"}
                         </button>
                         <p className="text-sm font-light text-gray-200">
                             Already have an account!{" "}

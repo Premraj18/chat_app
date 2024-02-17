@@ -62,9 +62,9 @@ const loginUser = async (req, res) => {
         const {username, password} = req.body;
         const user = await User.findOne({username});
 
-        if(!user){
-            return res.status(400).json({error: "User not found"})
-        }
+        // if(!user){
+        //     return res.status(400).json({error: "User not found"})
+        // }
 
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
 
@@ -91,7 +91,7 @@ const loginUser = async (req, res) => {
 const logoutUser = (req, res) => {
     try {
         res.cookie("jwt", "", {maxAge: 0});
-        res.status(200).json({error: "Logged out successfully"})
+        res.status(200).json({message: "Logged out successfully"})
     }
     catch (error) {
         console.log('Error in login controller', error.message)

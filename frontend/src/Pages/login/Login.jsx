@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
+import { InfinitySpin } from "react-loader-spinner";
 
 function Login() {
-    const navigate = useNavigate();
+
     const [username, setusername] = useState("");
     const [password, setPassword] = useState("");
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     axios.post('http://localhost:4000/login',{email,password})
-    //         .then(result => {
-    //             console.log(result)
-    //             if(result.data === "Success"){
-    //                 navigate ('/home')
-    //             }else{
-    //                 alert("invalid credentials");
-    //             }
-    //     })
-    //     .catch(err=> console.log(err))
-    // }
+    const {loading, login} = useLogin();
+
+    const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		await login(username, password)
+	};
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-[500px] lg:py-0 mt-40">
@@ -27,16 +23,17 @@ function Login() {
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight md:text-2xl text-white">
                         Login ChatApp
                     </h1>
-                    <form className="space-y-4 md:space-y-6">
+                    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label
-                                for="username"
+                                htmlFor="username"
                                 className="block mb-2 text-sm font-medium text-white"
                             >
                                 UserName
                             </label>
                             <input
                                 type="text"
+                                value={username}
                                 onChange={(e) => {
                                     setusername(e.target.value);
                                 }}
@@ -49,13 +46,14 @@ function Login() {
                         </div>
                         <div>
                             <label
-                                for="password"
+                                htmlFor="password"
                                 className="block mb-2 text-sm font-medium text-white"
                             >
                                 Password
                             </label>
                             <input
                                 type="password"
+                                value={password}
                                 onChange={(e) => {
                                     setPassword(e.target.value);
                                 }}
@@ -71,8 +69,9 @@ function Login() {
                             type="submit"
                             className="mx-36 text-center bg-slate-200 px-5 py-2"
                             style={{ borderRadius: "10px" }}
+                            disabled={loading}
                         >
-                            Login
+                            {loading ? <InfinitySpin visible={true} width="100" color="black" ariaLabel="infinity-spin-loading"/> : "Login"}
                         </button>
                         <p className="text-sm font-light text-gray-200">
                             Don’t have an account yet{" "}
