@@ -28,8 +28,8 @@ const SignUp = () => {
 	};
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-[500px] mt-10 lg:py-0">
-            <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+        <div className="flex w-[440px] flex-col items-center justify-center px-6 py-8 mx-auto sm:max-w-[500px] mt-10 lg:py-0">
+            <div className="w-[500px] p-6 rounded-lg shadow-md bg-gray-600">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight md:text-2xl text-white">
                         Register To ChatApp
@@ -113,7 +113,7 @@ const SignUp = () => {
 
                         <button
                             type="submit"
-                            className="mx-32 text-center bg-slate-200 w-28 py-2"
+                            className="sm:ml-24 ml-24 text-center bg-slate-200 w-28 py-2"
                             style={{ borderRadius: "10px" }}
                             disabled = {loading}
                         >
