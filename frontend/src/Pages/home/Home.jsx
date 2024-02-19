@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 
 const Home = () => {
   return (
-    <div className='flex sm:h-[550px] md:h-[650px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 md:mx-16 mx-5 mt-12'>
+    <div className='flex flex-col sm:flex-row sm:h-[700px] md:h-[700px] rounded-lg overflow-hidden bg-stone-800  md:mx-16 sm:mx-5 mx-1 mt-3'>
 			<Sidebar />
 			<MessageContainer />
 		</div>

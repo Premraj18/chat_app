@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/bg.png');
+/* body{
+    background: linear-gradient(rgb(45, 44, 44), rgb(36, 32, 32));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+} */
+body{
+    background-color: rgb(17, 17, 17);
 }
 .scroll::-webkit-scrollbar{
     display: none;

@@ -7,7 +7,7 @@ const Conversations = () => {
 	const { loading, conversations } = useGetConverstaion();
 	// console.log(conversations)
 	return (
-		<div className='py-2 flex flex-col overflow-auto scroll'>
+		<div className='py-2 flex sm:flex-col flex-row overflow-auto scroll'>
 
 			{
 				conversations.map((conversation,idx) => (
