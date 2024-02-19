@@ -21,6 +21,8 @@ export const SocketContextProvider = ({ children }) => {
                 }
             })
 
+            // console.log(socket)
+
             setSocket(socket);
 
             //socket.on() is used to listen to the events, can be used both on client and server side
