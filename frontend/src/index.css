@@ -12,3 +12,11 @@ body{
 .scroll::-webkit-scrollbar{
     display: none;
 }
+
+.online{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(13, 178, 13);
+    border-radius: 50%;
+}

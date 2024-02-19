@@ -23,7 +23,7 @@ const Message = ({message}) => {
                 </div>
             </div>
             <div>
-                <div className={`text-white ${bgColor} max-w-40 p-2 m-1 rounded-lg`}>{message.message}</div>
+                <div className={`text-white ${bgColor} max-w-60 text-sm p-2 m-1 rounded-lg`}>{message.message}</div>
                 <span className='text-slate-200 text-xs'>{formatTime}</span>
             </div>
         </div>

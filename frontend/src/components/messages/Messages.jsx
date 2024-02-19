@@ -2,9 +2,11 @@ import { InfinitySpin } from "react-loader-spinner";
 import useGetMessage from "../../hooks/useGetMessages";
 import Message from "./Message";
 import { useEffect, useRef } from "react";
+import useListenMessage from "../../hooks/useListenMessages";
 
 const Messages = () => {
 	const { messages, loading } = useGetMessage();
+	useListenMessage()
 	const lastMessageRef = useRef();
 	
 	useEffect(() => {
